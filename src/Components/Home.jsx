@@ -78,36 +78,37 @@ export default function Home() {
 
 
     function checkWinner() {
-        if (
-            (first === second && second === third && first !== '') ||
-            (fourth === fifth && fifth === sixth && fourth !== '') ||
-            (seventh === eight && eight === nine && seventh !== '') ||
-            (first === fourth && fourth === seventh && first !== '') ||
-            (second === fifth && fifth === eight && second !== '') ||
-            (third === sixth && sixth === nine && third !== '') ||
-            (first === fifth && fifth === nine && first !== '') ||
-            (third === fifth && fifth === seventh && third !== '')
-        ) {
-            if (first === '0') {
-                if (playerone === '0') {
+        const lines = [
+            [first, second, third],
+            [fourth, fifth, sixth],
+            [seventh, eight, nine],
+            [first, fourth, seventh],
+            [second, fifth, eight],
+            [third, sixth, nine],
+            [first, fifth, nine],
+            [third, fifth, seventh]
+        ];
+
+        for (let i = 0; i < lines.length; i++) {
+            const [a, b, c] = lines[i];
+            if (a && a === b && a === c) {
+                if (a === '0') {
                     setWinner('Player 1');
-                } else {
+                } else if (a === '1') {
                     setWinner('Player 2');
                 }
-            } else if (first === '1') {
-                if (playertwo === '1') {
-                    setWinner('Player 2');
-                } else {
-                    setWinner('Player 1');
-                }
+                return;
             }
+        }
+
+
+        if (first && second && third && fourth && fifth && sixth && seventh && eight && nine) {
+            setWinner('Draw');
         }
     }
 
-    let c = 0;
-
     function clearInputs() {
-        c = 1;
+
         setFirst('');
         setSecond('');
         setThird('');
@@ -172,7 +173,7 @@ export default function Home() {
                             <br />
                         </div>
                         <div className="text-center">
-                        {winner && <h5 style={{ color: 'blue' }}>Winner : {winner}</h5>}
+                            {winner && <h5 style={{ color: 'blue' }}>Winner : {winner}</h5>}
 
 
 
