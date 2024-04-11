@@ -1,0 +1,12 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height of the container to full viewport height */
+  }
+  
+  .card {
+    width: 700px;
+    height: 500px;
+  }
+  
